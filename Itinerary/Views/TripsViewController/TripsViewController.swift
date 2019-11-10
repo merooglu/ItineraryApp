@@ -8,9 +8,10 @@
 
 import UIKit
 
-class TripsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TripsViewController: UIViewController {
 
     @IBOutlet weak var tableVeiw: UITableView!
+    @IBOutlet weak var addButton: FloatingActionButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +21,15 @@ class TripsViewController: UIViewController, UITableViewDataSource, UITableViewD
         TripFunctions.readTrips(complition: { [weak self] in
             self?.tableVeiw.reloadData()
         })
+        
+        view.backgroundColor = Theme.background
+//        addButton.createFloatingActionButton()
+        
     }
- 
-    
+}
+
+extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Data.tripModels.count
     }
