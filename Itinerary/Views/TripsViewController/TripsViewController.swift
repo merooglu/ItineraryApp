@@ -31,12 +31,12 @@ class TripsViewController: UIViewController {
 extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Data.tripModels.count
+        return TripData.tripModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableVeiw.dequeueReusableCell(withIdentifier: "cell") as! TripsTableViewCell
-        cell.setup(tripModel: Data.tripModels[indexPath.row])
+        cell.setup(tripModel: TripData.tripModels[indexPath.row])
         return cell
     }
     

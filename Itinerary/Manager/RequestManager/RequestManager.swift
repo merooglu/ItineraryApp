@@ -54,15 +54,81 @@ class RequestManager {
         request.responseData { (response) in
             switch response.result {
             case .success:
-                print("sfs")
-//                success(ResponseSucces.decode(response.result.value!)!)
+                success(ResponseSucces.decode(response.result.value!)!)
             case .failure:
-                print("sfs")
-//                handleFailure(response: response, failure: failure)
+                handleFailure(response: response, failure: failure)
             }
         }
     }
     
+    static func request<T: Codable>(_ request: RequestDelegate, success: @escaping ObjectClosure<T>, failure: @escaping ErrorClosure) {
+        let request = createRequest(request)
+        request.responseData { (response) in
+            switch response.result {
+            case .success:
+                success(ResponseObject<T>.decode(response.result.value!)!)
+            case .failure:
+                handleFailure(response: response, failure: failure)
+            }
+        }
+    }
+    
+    static func request<T: Codable>(_ request: RequestDelegate, success: @escaping ArrayClosure<T>, failure: @escaping ErrorClosure) {
+        let request = createRequest(request)
+        request.responseData { (response) in
+            switch response.result {
+            case .success:
+                success(ResponseArray<T>.decode(response.result.value!)!)
+            case .failure:
+                handleFailure(response: response, failure: failure)
+            }
+        }
+    }
+    
+    static func request<T: Codable>(_ request: RequestDelegate, success: @escaping ArrayPaginationClosure<T>, failure: @escaping ErrorClosure) {
+        let request = createRequest(request)
+        request.responseData { (response) in
+            switch response.result {
+            case .success:
+                success(ResponsePaginationArray<T>.decode(response.result.value!)!)
+            case .failure:
+                handleFailure(response: response, failure: failure)
+            }
+        }
+    }
+    
+    
+    // MARK: - Handle failure
+    private static func handleFailure(response: DataResponse<Data>, failure: @escaping ErrorClosure) {
+        if let statusCode = response.response?.statusCode, statusCode == 401 {
+            // TODO: - after create auth class uncomment this line
+//            Auth.delete()
+//            AppDelegate.shared.gotoAuth()
+            return
+        }
+        if let data = response.data, let serviceError = ResponseError.decode(data) {
+            if let json = String(data: data, encoding: .utf8) {
+                print("Response JSON: \n\(json)")
+            }
+            handleError(statusCode: response.response?.statusCode, localError: nil, serviceError: serviceError, failure: failure)
+        } else if let error = response.result.error {
+            handleError(statusCode: nil, localError: error, serviceError: nil, failure: failure)
+        } else {
+            handleError(statusCode: nil, localError: nil, serviceError: nil, failure: failure)
+        }
+    }
+    
+    private static func handleError(statusCode: Int?, localError: Error?, serviceError: ResponseError?, failure: @escaping ErrorClosure) {
+        if let error = serviceError {
+            failure(error)
+        } else if let error = localError as? URLError, error.code == .notConnectedToInternet {
+            failure(ResponseError(code: errorCodeConnection, message: error.localizedDescription))
+        } else if let error = localError {
+            failure(ResponseError(code: errorCodeLocal, message: error.localizedDescription))
+        } else {
+            failure(ResponseError(code: errorCodeUnknown, message: "Unknown Error"))
+        }
+    }
     
     
     private static func generateHeader() -> [String: String]? {

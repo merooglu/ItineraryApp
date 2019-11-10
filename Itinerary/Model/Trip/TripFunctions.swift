@@ -16,10 +16,10 @@ class TripFunctions {
     
     static func readTrips(complition: @escaping () -> ()) {
         DispatchQueue.global(qos: .userInteractive).async {
-            if Data.tripModels.count == 0 {
-                Data.tripModels.append(TripModel(title: "Trip to Bali"))
-                Data.tripModels.append(TripModel(title: "Mexico"))
-                Data.tripModels.append(TripModel(title: "Russian Trip"))
+            if TripData.tripModels.count == 0 {
+                TripData.tripModels.append(TripModel(title: "Trip to Bali"))
+                TripData.tripModels.append(TripModel(title: "Mexico"))
+                TripData.tripModels.append(TripModel(title: "Russian Trip"))
             }
         }
         

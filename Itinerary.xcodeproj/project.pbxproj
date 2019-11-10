@@ -17,9 +17,10 @@
 		911355CD2378283300534CA3 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355CC2378283300534CA3 /* RequestManager.swift */; };
 		911355CF23784A0200534CA3 /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355CE23784A0200534CA3 /* RequestDelegate.swift */; };
 		911355D123784EA500534CA3 /* RequestResultSuccessDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355D023784EA500534CA3 /* RequestResultSuccessDelegate.swift */; };
+		911917D92378975D00A5BFC8 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911917D82378975D00A5BFC8 /* CodableExtension.swift */; };
 		911DA24C23682D8F00F90494 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA24B23682D8F00F90494 /* TripModel.swift */; };
 		911DA24E23682E0A00F90494 /* TripFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA24D23682E0A00F90494 /* TripFunctions.swift */; };
-		911DA250236840BC00F90494 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA24F236840BC00F90494 /* Data.swift */; };
+		911DA250236840BC00F90494 /* TripData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA24F236840BC00F90494 /* TripData.swift */; };
 		911DA25423684AFE00F90494 /* TripsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 911DA25323684AFE00F90494 /* TripsViewController.storyboard */; };
 		911DA25623684B1B00F90494 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA25523684B1B00F90494 /* TripsViewController.swift */; };
 		911DA258236851F100F90494 /* TripsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA257236851F100F90494 /* TripsTableViewCell.swift */; };
@@ -46,9 +47,10 @@
 		911355CC2378283300534CA3 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		911355CE23784A0200534CA3 /* RequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestDelegate.swift; path = ../../../../../../../Documents/RequestDelegate.swift; sourceTree = "<group>"; };
 		911355D023784EA500534CA3 /* RequestResultSuccessDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestResultSuccessDelegate.swift; path = ../../../../../../../Documents/RequestResultSuccessDelegate.swift; sourceTree = "<group>"; };
+		911917D82378975D00A5BFC8 /* CodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtension.swift; sourceTree = "<group>"; };
 		911DA24B23682D8F00F90494 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		911DA24D23682E0A00F90494 /* TripFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFunctions.swift; sourceTree = "<group>"; };
-		911DA24F236840BC00F90494 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		911DA24F236840BC00F90494 /* TripData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripData.swift; sourceTree = "<group>"; };
 		911DA25323684AFE00F90494 /* TripsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TripsViewController.storyboard; sourceTree = "<group>"; };
 		911DA25523684B1B00F90494 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		911DA257236851F100F90494 /* TripsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 			children = (
 				911355C6237821C300534CA3 /* Pagination.swift */,
 				911355B92378189900534CA3 /* Response */,
-				911DA24F236840BC00F90494 /* Data.swift */,
+				911DA24F236840BC00F90494 /* TripData.swift */,
 				911DA24A23682D7100F90494 /* Trip */,
 			);
 			path = Model;
@@ -213,6 +215,7 @@
 				91ECEDDD236A0BF4000E6102 /* UIViewExtensions.swift */,
 				91ECEDE8236A2B90000E6102 /* UIButtonExtension.swift */,
 				91ECEDEA236A2FAB000E6102 /* FloatingActionButton.swift */,
+				911917D82378975D00A5BFC8 /* CodableExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -367,8 +370,9 @@
 				911355C123781A4400534CA3 /* ResponseObject.swift in Sources */,
 				911355CF23784A0200534CA3 /* RequestDelegate.swift in Sources */,
 				911DA24E23682E0A00F90494 /* TripFunctions.swift in Sources */,
+				911917D92378975D00A5BFC8 /* CodableExtension.swift in Sources */,
 				91ECEDEB236A2FAB000E6102 /* FloatingActionButton.swift in Sources */,
-				911DA250236840BC00F90494 /* Data.swift in Sources */,
+				911DA250236840BC00F90494 /* TripData.swift in Sources */,
 				911355BB237818BC00534CA3 /* BaseResponse.swift in Sources */,
 				911355CD2378283300534CA3 /* RequestManager.swift in Sources */,
 				911DA25623684B1B00F90494 /* TripsViewController.swift in Sources */,
