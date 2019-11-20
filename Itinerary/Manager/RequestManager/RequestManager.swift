@@ -9,7 +9,7 @@
 import Alamofire
 
 class RequestManager {
-    typealias SuccessClosure = ((ResponseSucces) -> Void)
+    typealias SuccessClosure = ((ResponseSuccess) -> Void)
     typealias ErrorClosure = ((ResponseError) -> Void)
     typealias ObjectClosure<T: Codable> = ((ResponseObject<T>) -> Void)
     typealias ArrayClosure<T: Codable> = ((ResponseArray<T>) -> Void)
@@ -54,7 +54,7 @@ class RequestManager {
         request.responseData { (response) in
             switch response.result {
             case .success:
-                success(ResponseSucces.decode(response.result.value!)!)
+                success(ResponseSuccess.decode(response.result.value!)!)
             case .failure:
                 handleFailure(response: response, failure: failure)
             }
@@ -97,6 +97,94 @@ class RequestManager {
         }
     }
     
+    // MARK: - Image Data
+    static func upload<T: Codable>(_ request: RequestDelegate, success: @escaping ObjectClosure<T>, failure: @escaping ErrorClosure) {
+        var currentMethod = request.method
+        
+        switch request.method {
+        case .put:
+            currentMethod = .post
+        default:
+            break
+        }
+        
+        Alamofire.upload(multipartFormData: { (data) in
+            if request.method == .put {
+                data.append("put".data(using: String.Encoding.utf8)!, withName: "_method")
+            }
+            if let values = request.parameters {
+                for (key, value) in values {
+                    if let value = value as? String {
+                        data.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    } else if let value = value as? Data {
+                        data.append(value, withName: key, fileName: "\(key).jpeg", mimeType: "image/jpeg")
+                    } else {
+                        assertionFailure("Enable for String and Data types")
+                    }
+                }
+            }
+        }, usingThreshold: UInt64(), to: apiUrl+request.path, method: currentMethod, headers: generateHeader()) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                request.validate()
+                request.responseData { (response) in
+                    switch response.result {
+                    case .success:
+                        success(ResponseObject<T>.decode(response.result.value!)!)
+                    case .failure:
+                        handleFailure(response: response, failure: failure)
+                    }
+                }
+            case .failure(let error):
+                handleError(statusCode: nil, localError: error, serviceError: nil, failure: failure)
+            }
+        }
+    }
+    
+    // MARK: Image data only success closure
+    static func uploadNonData(_ request: RequestDelegate, success: @escaping SuccessClosure, failure: @escaping ErrorClosure) {
+        var currentMethod = request.method
+        
+        switch request.method {
+        case .put:
+            currentMethod = .post
+        default:
+            break
+        }
+        
+        Alamofire.upload(multipartFormData: { (data) in
+            if request.method == .put {
+                data.append("put".data(using: String.Encoding.utf8)!, withName: "_method")
+            }
+            if let values = request.parameters {
+                for (key, value) in values {
+                    if let value = value as? String {
+                        data.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                    }
+                    else if let value = value as? Data {
+                        data.append(value, withName: key, fileName: "\(key).jpg", mimeType: "image/jpeg")
+                    }
+                    else {
+                        assertionFailure("Enable for String and Data types.")
+                    }
+                }
+            }
+        }, usingThreshold: UInt64(), to: apiUrl+request.path, method: currentMethod, headers: generateHeader()) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                request.responseData { (response) in
+                    switch response.result {
+                    case .success:
+                        success(ResponseSuccess.decode(response.result.value!)!)
+                    case .failure:
+                        handleFailure(response: response, failure: failure)
+                    }
+                }
+            case .failure(let error):
+                handleError(statusCode: nil, localError: error, serviceError: nil, failure: failure)
+            }
+        }
+    }
     
     // MARK: - Handle failure
     private static func handleFailure(response: DataResponse<Data>, failure: @escaping ErrorClosure) {

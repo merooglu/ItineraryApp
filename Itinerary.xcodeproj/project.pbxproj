@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91056AB02385CB290057F3E2 /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91056AAF2385CB290057F3E2 /* RequestDelegate.swift */; };
+		91056AB22385CC1D0057F3E2 /* RequestResultSuccessDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91056AB12385CC1D0057F3E2 /* RequestResultSuccessDelegate.swift */; };
+		91056AB42385CE3A0057F3E2 /* RequestResultObjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91056AB32385CE3A0057F3E2 /* RequestResultObjectDelegate.swift */; };
 		911355BB237818BC00534CA3 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355BA237818BC00534CA3 /* BaseResponse.swift */; };
 		911355BD2378191900534CA3 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355BC2378191900534CA3 /* ResponseError.swift */; };
 		911355BF237819EA00534CA3 /* ResponseSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355BE237819EA00534CA3 /* ResponseSuccess.swift */; };
@@ -15,8 +18,6 @@
 		911355C52378214500534CA3 /* ResponsePaginationArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355C42378214500534CA3 /* ResponsePaginationArray.swift */; };
 		911355C7237821C300534CA3 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355C6237821C300534CA3 /* Pagination.swift */; };
 		911355CD2378283300534CA3 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355CC2378283300534CA3 /* RequestManager.swift */; };
-		911355CF23784A0200534CA3 /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355CE23784A0200534CA3 /* RequestDelegate.swift */; };
-		911355D123784EA500534CA3 /* RequestResultSuccessDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911355D023784EA500534CA3 /* RequestResultSuccessDelegate.swift */; };
 		911917D92378975D00A5BFC8 /* CodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911917D82378975D00A5BFC8 /* CodableExtension.swift */; };
 		911DA24C23682D8F00F90494 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA24B23682D8F00F90494 /* TripModel.swift */; };
 		911DA24E23682E0A00F90494 /* TripFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA24D23682E0A00F90494 /* TripFunctions.swift */; };
@@ -37,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		91056AAF2385CB290057F3E2 /* RequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDelegate.swift; sourceTree = "<group>"; };
+		91056AB12385CC1D0057F3E2 /* RequestResultSuccessDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResultSuccessDelegate.swift; sourceTree = "<group>"; };
+		91056AB32385CE3A0057F3E2 /* RequestResultObjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResultObjectDelegate.swift; sourceTree = "<group>"; };
 		911355BA237818BC00534CA3 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		911355BC2378191900534CA3 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		911355BE237819EA00534CA3 /* ResponseSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSuccess.swift; sourceTree = "<group>"; };
@@ -45,8 +49,6 @@
 		911355C42378214500534CA3 /* ResponsePaginationArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePaginationArray.swift; sourceTree = "<group>"; };
 		911355C6237821C300534CA3 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		911355CC2378283300534CA3 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
-		911355CE23784A0200534CA3 /* RequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestDelegate.swift; path = ../../../../../../../Documents/RequestDelegate.swift; sourceTree = "<group>"; };
-		911355D023784EA500534CA3 /* RequestResultSuccessDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RequestResultSuccessDelegate.swift; path = ../../../../../../../Documents/RequestResultSuccessDelegate.swift; sourceTree = "<group>"; };
 		911917D82378975D00A5BFC8 /* CodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtension.swift; sourceTree = "<group>"; };
 		911DA24B23682D8F00F90494 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		911DA24D23682E0A00F90494 /* TripFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFunctions.swift; sourceTree = "<group>"; };
@@ -124,8 +126,9 @@
 		911355CA237827E600534CA3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				911355CE23784A0200534CA3 /* RequestDelegate.swift */,
-				911355D023784EA500534CA3 /* RequestResultSuccessDelegate.swift */,
+				91056AAF2385CB290057F3E2 /* RequestDelegate.swift */,
+				91056AB12385CC1D0057F3E2 /* RequestResultSuccessDelegate.swift */,
+				91056AB32385CE3A0057F3E2 /* RequestResultObjectDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -356,9 +359,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91056AB42385CE3A0057F3E2 /* RequestResultObjectDelegate.swift in Sources */,
 				911355C52378214500534CA3 /* ResponsePaginationArray.swift in Sources */,
-				911355D123784EA500534CA3 /* RequestResultSuccessDelegate.swift in Sources */,
+				91056AB02385CB290057F3E2 /* RequestDelegate.swift in Sources */,
 				911DA258236851F100F90494 /* TripsTableViewCell.swift in Sources */,
+				91056AB22385CC1D0057F3E2 /* RequestResultSuccessDelegate.swift in Sources */,
 				91ECEDE1236A12C5000E6102 /* Theme.swift in Sources */,
 				911355C7237821C300534CA3 /* Pagination.swift in Sources */,
 				91ECEDDE236A0BF4000E6102 /* UIViewExtensions.swift in Sources */,
@@ -368,7 +373,6 @@
 				916195AF2365F0CE006D707A /* AppDelegate.swift in Sources */,
 				91ECEDE9236A2B90000E6102 /* UIButtonExtension.swift in Sources */,
 				911355C123781A4400534CA3 /* ResponseObject.swift in Sources */,
-				911355CF23784A0200534CA3 /* RequestDelegate.swift in Sources */,
 				911DA24E23682E0A00F90494 /* TripFunctions.swift in Sources */,
 				911917D92378975D00A5BFC8 /* CodableExtension.swift in Sources */,
 				91ECEDEB236A2FAB000E6102 /* FloatingActionButton.swift in Sources */,

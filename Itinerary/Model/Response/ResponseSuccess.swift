@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ResponseSucces: Codable {
+class ResponseSuccess: Codable {
     
     var code: String!
     var message: String!
