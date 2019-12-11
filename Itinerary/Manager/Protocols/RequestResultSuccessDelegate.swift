@@ -10,14 +10,14 @@ import Foundation
 
 protocol RequestResultSuccessDelegate: RequestDelegate {
     
-    func didSuccess(_ result: ResponseSucces)
+    func didSuccess(_ result: ResponseSuccess)
     
 }
 
 extension RequestResultSuccessDelegate {
     
     func request(success: @escaping RequestManager.SuccessClosure, failure: @escaping RequestManager.ErrorClosure) {
-        RequestManager.request(self, success: { (result: ResponseSucces) in
+        RequestManager.request(self, success: { (result: ResponseSuccess) in
             self.didSuccess(result)
         }) { (error) in
             self.didError(error)
@@ -25,6 +25,6 @@ extension RequestResultSuccessDelegate {
         }
     }
     
-    func didSuccess(_ result: ResponseSucces) { }
+    func didSuccess(_ result: ResponseSuccess) { }
     
 }

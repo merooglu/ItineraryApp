@@ -9,7 +9,7 @@
 import Foundation
 
 class ResponseSuccess: Codable {
-    
+
     var code: String!
     var message: String!
 }
