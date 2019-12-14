@@ -57,7 +57,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="ic_plus"/>
                                 <connections>
-                                    <segue destination="6iu-7H-csf" kind="presentation" id="qCY-PC-1YF"/>
+                                    <segue destination="DDd-5h-qb4" kind="presentation" id="qCY-PC-1YF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -73,13 +73,20 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="127.28635682158921"/>
         </scene>
-        <!--AddTripViewController-->
-        <scene sceneID="iPF-OS-F05">
+        <!--View Controller-->
+        <scene sceneID="bVo-Gh-qaY">
             <objects>
-                <viewControllerPlaceholder storyboardName="AddTripViewController" id="6iu-7H-csf" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zuN-ht-6if" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="DDd-5h-qb4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kSB-BY-HSX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="eEm-ie-9xZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DyJ-lc-FyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="127"/>
+            <point key="canvasLocation" x="985" y="127"/>
         </scene>
     </scenes>
     <resources>

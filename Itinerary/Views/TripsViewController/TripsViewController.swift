@@ -18,11 +18,13 @@ class TripsViewController: UIViewController {
 
         tableVeiw.delegate = self
         tableVeiw.dataSource = self
+        
         TripFunctions.readTrips(complition: { [weak self] in
+            // Completion, this called from TripFunctions.readTrips function
             self?.tableVeiw.reloadData()
         })
         
-        view.backgroundColor = Theme.background
+        view.backgroundColor = Theme.backgroundColor
 //        addButton.createFloatingActionButton()
         
     }
