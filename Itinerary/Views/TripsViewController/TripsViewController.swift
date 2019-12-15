@@ -12,6 +12,8 @@ class TripsViewController: UIViewController {
     
     @IBOutlet weak var tableVeiw: UITableView!
     @IBOutlet weak var addButton: FloatingActionButton!
+    @IBOutlet var helpView: UIVisualEffectView!
+    var seenHelpView = "seenHelpView"
     
     var tripIndexToEdit: Int?
     
@@ -21,11 +23,18 @@ class TripsViewController: UIViewController {
         tableVeiw.delegate = self
         tableVeiw.dataSource = self
         
-        TripFunctions.readTrips(complition: { [weak self] in
+        TripFunctions.readTrips(complition: { [unowned self] in
             // Completion, this called from TripFunctions.readTrips function
-            self?.tableVeiw.reloadData()
+            self.tableVeiw.reloadData()
+            
+            if TripData.tripModels.count > 0 {
+                if UserDefaults.standard.bool(forKey: self.seenHelpView) == false {
+                    self.view.addSubview(self.helpView)
+                    self.helpView.frame = self.view.frame
+                }
+            }
         })
-        
+     
         view.backgroundColor = Theme.backgroundColor
         //        addButton.createFloatingActionButton()
         
@@ -40,6 +49,7 @@ class TripsViewController: UIViewController {
             popup.doneSaving = {[weak self] in
                 self?.tableVeiw.reloadData()
             }
+            tripIndexToEdit = nil
         }
     }
     
@@ -47,6 +57,16 @@ class TripsViewController: UIViewController {
     func tripVCdoneSavingFunction() {
         // this call back functions
         // add your code here
+    }
+    
+    
+    @IBAction func helpViewCloseButtonTapped(_ sender: Any) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.helpView.alpha = 0
+        }) { (success) in
+            self.helpView.removeFromSuperview()
+            UserDefaults.standard.set(true, forKey: self.seenHelpView)
+        }
     }
     
 }
