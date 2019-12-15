@@ -10,18 +10,20 @@ import Photos
 import UIKit
 
 class AddTripViewController: UIViewController {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tripTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var imageview: UIImageView!
     
+    var tripIndexToEdit: Int?
+    
     var doneSaving: (() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         titleLabel.font = UIFont(name: Theme.mainFontName, size: 24)
         imageview.layer.cornerRadius = 10
         
@@ -30,8 +32,14 @@ class AddTripViewController: UIViewController {
         titleLabel.layer.shadowColor = UIColor.white.cgColor
         titleLabel.layer.shadowOffset = CGSize.zero
         titleLabel.layer.shadowRadius = 5
+        
+        if let index = tripIndexToEdit {
+            let trip = TripData.tripModels[index]
+            tripTextField.text = trip.title
+            imageview.image = trip.image
+        }
     }
-   
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -40,16 +48,19 @@ class AddTripViewController: UIViewController {
         tripTextField.rightViewMode = .never
         
         guard tripTextField.text != "", let newTripName = tripTextField.text else {
-//            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
-//            imageView.image = UIImage(named: "ic_warning")
-//            imageView.contentMode = .scaleAspectFit
-//
-//            tripTextField.rightView = imageView
-//            tripTextField.rightViewMode = .always
-            
             // Alternatives
-//            tripTextField.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            // 1- to show warning image in textfield
+            //            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
+            //            imageView.image = UIImage(named: "ic_warning")
+            //            imageView.contentMode = .scaleAspectFit
+            //
+            //            tripTextField.rightView = imageView
+            //            tripTextField.rightViewMode = .always
             
+            // 2- make textfield background something diffrent
+            //            tripTextField.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            
+            // 3- make textfield borders red
             tripTextField.layer.borderColor = UIColor.red.cgColor
             tripTextField.layer.borderWidth = 1
             tripTextField.layer.cornerRadius = 5
@@ -57,8 +68,12 @@ class AddTripViewController: UIViewController {
             
             return
         }
-        
-        TripFunctions.createTrip(tripModel: TripModel(title: newTripName, image: imageview.image))
+
+        if let index = tripIndexToEdit {
+            TripFunctions.updateTrip(at: index, title: newTripName, image: imageview.image)
+        } else {
+            TripFunctions.createTrip(tripModel: TripModel(title: newTripName, image: imageview.image))
+        }
         
         if let doneSaving = doneSaving {
             doneSaving()
@@ -76,35 +91,33 @@ class AddTripViewController: UIViewController {
     }
     
     @IBAction func addPhotoButtonTapped(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            PHPhotoLibrary.requestAuthorization { (status) in
-                switch status {
-                case .authorized:
-                  self.presentPhotoPickerController()
-                case .notDetermined:
-                    if status == PHAuthorizationStatus.authorized {
-                        self.presentPhotoPickerController()
-                    }
-                case .restricted:
-                    let alert = UIAlertController(title: "Photo Library Restricted", message: "Photo library access restricted and cannot be accessed.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true)
-                case .denied:
-                    let alert = UIAlertController(title: "Photo Library Access Denied", message: "Photo library access was previously denied. Please update your Settings if you wish to change this.", preferredStyle: .alert)
-                    let gotoSettingsAction = UIAlertAction(title: "Go to Settings", style: .default) { (action) in
-                        DispatchQueue.main.async {
-                            let url = URL(string: UIApplication.openSettingsURLString)!
-                            UIApplication.shared.open(url, options: [:])
-                        }
-                    }
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    alert.addAction(gotoSettingsAction)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true)
-                default:
-                    break
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status {
+            case .authorized:
+                self.presentPhotoPickerController()
+            case .notDetermined:
+                if status == PHAuthorizationStatus.authorized {
+                    self.presentPhotoPickerController()
                 }
+            case .restricted:
+                let alert = UIAlertController(title: "Photo Library Restricted", message: "Photo library access restricted and cannot be accessed.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(okAction)
+                self.present(alert, animated: true)
+            case .denied:
+                let alert = UIAlertController(title: "Photo Library Access Denied", message: "Photo library access was previously denied. Please update your Settings if you wish to change this.", preferredStyle: .alert)
+                let gotoSettingsAction = UIAlertAction(title: "Go to Settings", style: .default) { (action) in
+                    DispatchQueue.main.async {
+                        let url = URL(string: UIApplication.openSettingsURLString)!
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                alert.addAction(gotoSettingsAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true)
+            default:
+                break
             }
         }
     }
@@ -115,7 +128,7 @@ extension AddTripViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[.originalImage] as? UIImage {
             self.imageview.image = image
         }
         dismiss(animated: true)

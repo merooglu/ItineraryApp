@@ -13,6 +13,8 @@ class TripsViewController: UIViewController {
     @IBOutlet weak var tableVeiw: UITableView!
     @IBOutlet weak var addButton: FloatingActionButton!
     
+    var tripIndexToEdit: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,7 @@ class TripsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTripViewController" {
             let popup = segue.destination as! AddTripViewController
+            popup.tripIndexToEdit = self.tripIndexToEdit
             // 1. You can use the callback like this
 //            popup.doneSaving = tripVCdoneSavingFunction()
             popup.doneSaving = {[weak self] in
@@ -87,7 +90,7 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         // this available thing is because I don't have trash icon in project so I use the sf symbols icon
         if #available(iOS 13.0, *) {
-            delete.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(scale: .medium))
+            delete.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
         } else {
             // Fallback on earlier versions
         }
@@ -96,5 +99,22 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
+            self.tripIndexToEdit = indexPath.row
+            self.performSegue(withIdentifier: "AddTripViewController", sender: nil)
+            actionPerformed(true)
+        }
+        
+        
+        if #available(iOS 13.0, *) {
+            edit.image = UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
+        } else {
+            // Fallback on earlier versions
+        }
+        edit.backgroundColor = Theme.editColor // UIColor(named: "Edit")
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
     
 }

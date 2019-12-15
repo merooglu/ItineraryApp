@@ -6,7 +6,7 @@
 //  Copyright © 2019 Mehmet Eroğlu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TripFunctions {
     // static keyword means you don't need the initiate the TripFunction class every time, when you call the functions in this class
@@ -28,8 +28,9 @@ class TripFunctions {
         }
     }
     
-    static func updateTrip(tripModel: TripModel) {
-        
+    static func updateTrip(at index: Int, title: String, image: UIImage? = nil) {
+        TripData.tripModels[index].title = title
+        TripData.tripModels[index].image = image
     }
     
     static func deleteTrip(index: Int) {
