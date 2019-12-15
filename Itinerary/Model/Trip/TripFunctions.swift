@@ -11,7 +11,7 @@ import Foundation
 class TripFunctions {
     // static keyword means you don't need the initiate the TripFunction class every time, when you call the functions in this class
     static func createTrip(tripModel: TripModel) {
-        
+        TripData.tripModels.append(tripModel)
     }
     
     static func readTrips(complition: @escaping () -> ()) {
@@ -20,7 +20,6 @@ class TripFunctions {
                 TripData.tripModels.append(TripModel(title: "Trip to Bali"))
                 TripData.tripModels.append(TripModel(title: "Mexico"))
                 TripData.tripModels.append(TripModel(title: "Russian Trip"))
-                TripData.tripModels.append(TripModel(title: "Vocation on Hawaii"))
             }
         }
         

@@ -17,23 +17,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7I-4V-xon" customClass="PopupUIView" customModule="Itinerary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="54" width="374" height="150"/>
+                                <rect key="frame" x="15" y="54" width="384" height="150"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcn-1z-vBD">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGx-Lz-NQm">
-                                        <rect key="frame" x="8" y="8" width="358" height="32"/>
+                                        <rect key="frame" x="8" y="8" width="368" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trip Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eeS-Wj-bWj">
-                                        <rect key="frame" x="8" y="48" width="358" height="34"/>
+                                        <rect key="frame" x="8" y="48" width="368" height="34"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPc-VC-D3r" customClass="AppUIButton" customModule="Itinerary" customModuleProvider="target">
-                                        <rect key="frame" x="266" y="98" width="100" height="44"/>
+                                        <rect key="frame" x="276" y="98" width="100" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <state key="normal" title="Save"/>
                                         <connections>
@@ -48,6 +52,14 @@
                                             <action selector="cancelButtonTapped:" destination="DDd-5h-qb4" eventType="touchUpInside" id="0e5-Vx-oJk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doW-hp-ShZ">
+                                        <rect key="frame" x="332" y="13" width="34" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ic_camera"/>
+                                        <connections>
+                                            <action selector="addPhotoButtonTapped:" destination="DDd-5h-qb4" eventType="touchUpInside" id="cwS-pj-gIb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -57,14 +69,15 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eEm-ie-9xZ" firstAttribute="trailing" secondItem="j7I-4V-xon" secondAttribute="trailing" constant="20" id="E8N-Es-GVG"/>
-                            <constraint firstItem="j7I-4V-xon" firstAttribute="leading" secondItem="eEm-ie-9xZ" secondAttribute="leading" constant="20" id="HnE-aW-bLS"/>
+                            <constraint firstItem="eEm-ie-9xZ" firstAttribute="trailing" secondItem="j7I-4V-xon" secondAttribute="trailing" constant="15" id="E8N-Es-GVG"/>
+                            <constraint firstItem="j7I-4V-xon" firstAttribute="leading" secondItem="eEm-ie-9xZ" secondAttribute="leading" constant="15" id="HnE-aW-bLS"/>
                             <constraint firstItem="j7I-4V-xon" firstAttribute="top" secondItem="eEm-ie-9xZ" secondAttribute="top" constant="10" id="eii-Eo-jK6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eEm-ie-9xZ"/>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="wC5-bY-7fO" id="BIX-2e-K1T"/>
+                        <outlet property="imageview" destination="Pcn-1z-vBD" id="n6c-CO-8m4"/>
                         <outlet property="saveButton" destination="RPc-VC-D3r" id="jq9-5Q-kd1"/>
                         <outlet property="titleLabel" destination="nGx-Lz-NQm" id="Jck-yg-J1h"/>
                         <outlet property="tripTextField" destination="eeS-Wj-bWj" id="NfR-Ii-pIf"/>
@@ -75,4 +88,8 @@
             <point key="canvasLocation" x="984.05797101449286" y="126.5625"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_camera" width="100" height="83"/>
+    </resources>
+    <color key="tintColor" name="Tint"/>
 </document>
