@@ -63,4 +63,38 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let trip = TripData.tripModels[indexPath.row]
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, actionPerformed: @escaping (Bool) -> Void ) in
+            
+            let alert = UIAlertController(title: "Delete Trip", message: "Are you sure want to delete this trip: \(trip.title)", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
+                actionPerformed(false)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alertAction) in
+                // perform delete
+                TripFunctions.deleteTrip(index: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                actionPerformed(true)
+            }))
+            
+            self.present(alert, animated: true)
+            
+        }
+        // this available thing is because I don't have trash icon in project so I use the sf symbols icon
+        if #available(iOS 13.0, *) {
+            delete.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(scale: .medium))
+        } else {
+            // Fallback on earlier versions
+        }
+        // change the UIContextualAction background color
+//        delete.backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    
 }
