@@ -28,6 +28,8 @@
 		916195AF2365F0CE006D707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916195AE2365F0CE006D707A /* AppDelegate.swift */; };
 		916195B92365F0D1006D707A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916195B72365F0D1006D707A /* LaunchScreen.storyboard */; };
 		9180387223A2E88B009D6C2D /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91ECEDE2236A1321000E6102 /* FugazOne-Regular.ttf */; };
+		91E5682923A82B7700F548BE /* ActivitiesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E5682823A82B7700F548BE /* ActivitiesViewController.storyboard */; };
+		91E5682B23A82BAE00F548BE /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E5682A23A82BAE00F548BE /* ActivitiesViewController.swift */; };
 		91ECEDDE236A0BF4000E6102 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ECEDDD236A0BF4000E6102 /* UIViewExtensions.swift */; };
 		91ECEDE1236A12C5000E6102 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ECEDE0236A12C5000E6102 /* Theme.swift */; };
 		91ECEDE5236A148C000E6102 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91ECEDE4236A148C000E6102 /* Colors.xcassets */; };
@@ -64,6 +66,8 @@
 		916195AE2365F0CE006D707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		916195B82365F0D1006D707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		916195BA2365F0D1006D707A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91E5682823A82B7700F548BE /* ActivitiesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActivitiesViewController.storyboard; sourceTree = "<group>"; };
+		91E5682A23A82BAE00F548BE /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		91ECEDDD236A0BF4000E6102 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		91ECEDE0236A12C5000E6102 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		91ECEDE2236A1321000E6102 /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			children = (
 				91F10A8D23A558FF006FD594 /* AddTripViewController */,
 				911DA25223684AD600F90494 /* TripsViewController */,
+				91E5682723A82B2000F548BE /* ActivitiesViewController */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,11 +219,19 @@
 				911DA24923682D6800F90494 /* Model */,
 				911DA25123684AB900F90494 /* Views */,
 				916195AE2365F0CE006D707A /* AppDelegate.swift */,
-				91ECEDE6236A276A000E6102 /* Assets.xcassets */,
 				916195B72365F0D1006D707A /* LaunchScreen.storyboard */,
 				916195BA2365F0D1006D707A /* Info.plist */,
 			);
 			path = Itinerary;
+			sourceTree = "<group>";
+		};
+		91E5682723A82B2000F548BE /* ActivitiesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91E5682823A82B7700F548BE /* ActivitiesViewController.storyboard */,
+				91E5682A23A82BAE00F548BE /* ActivitiesViewController.swift */,
+			);
+			path = ActivitiesViewController;
 			sourceTree = "<group>";
 		};
 		91ECEDDC236A0BCF000E6102 /* Extensions */ = {
@@ -239,6 +252,7 @@
 				91ECEDE0236A12C5000E6102 /* Theme.swift */,
 				91ECEDE2236A1321000E6102 /* FugazOne-Regular.ttf */,
 				91ECEDE4236A148C000E6102 /* Colors.xcassets */,
+				91ECEDE6236A276A000E6102 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -333,6 +347,7 @@
 				91F10A8C23A5589D006FD594 /* AddTripViewController.storyboard in Resources */,
 				916195B92365F0D1006D707A /* LaunchScreen.storyboard in Resources */,
 				911DA25423684AFE00F90494 /* TripsViewController.storyboard in Resources */,
+				91E5682923A82B7700F548BE /* ActivitiesViewController.storyboard in Resources */,
 				91ECEDE5236A148C000E6102 /* Colors.xcassets in Resources */,
 				9180387223A2E88B009D6C2D /* FugazOne-Regular.ttf in Resources */,
 				91ECEDE7236A276A000E6102 /* Assets.xcassets in Resources */,
@@ -405,6 +420,7 @@
 				911355C123781A4400534CA3 /* ResponseObject.swift in Sources */,
 				911DA24E23682E0A00F90494 /* TripFunctions.swift in Sources */,
 				911917D92378975D00A5BFC8 /* CodableExtension.swift in Sources */,
+				91E5682B23A82BAE00F548BE /* ActivitiesViewController.swift in Sources */,
 				91F10A8F23A55931006FD594 /* AddTripViewController.swift in Sources */,
 				91F10A9223A5600B006FD594 /* PopupUIView.swift in Sources */,
 				91ECEDEB236A2FAB000E6102 /* FloatingActionButton.swift in Sources */,

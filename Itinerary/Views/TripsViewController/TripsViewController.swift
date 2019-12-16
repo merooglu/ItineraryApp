@@ -40,6 +40,10 @@ class TripsViewController: UIViewController {
         
     }
     
+    @IBAction func unwindToTripsViewController(_ unwindSegue: UIStoryboardSegue) {
+        // leave here blank
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTripViewController" {
             let popup = segue.destination as! AddTripViewController
@@ -71,6 +75,7 @@ class TripsViewController: UIViewController {
     
 }
 
+// MARK: - TableView datasource and delegate functions
 extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,6 +92,13 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
         return 160
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: String(describing: ActivitiesViewController.self), bundle: nil)
+        let vc = storyBoard.instantiateInitialViewController()!
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: - Deleting tableView row swipe to left side
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let trip = TripData.tripModels[indexPath.row]
         
@@ -119,7 +131,7 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
-    
+    // MARK: - Editing tableView rows swipe to right side
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
             self.tripIndexToEdit = indexPath.row

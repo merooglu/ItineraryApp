@@ -220,7 +220,7 @@ class RequestManager {
     
     
     private static func generateHeader() -> [String: String]? {
-        var parameters: [String: String] = [:]
+        let parameters: [String: String] = [:]
         // TODO: - After writing Auth class uncomment this line
 //        if let auth = Auth.save() {
 //            parameters["Authorization"] = "Bearer \(auth.token!)"
