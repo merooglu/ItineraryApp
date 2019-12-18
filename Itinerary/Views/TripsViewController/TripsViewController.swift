@@ -40,10 +40,6 @@ class TripsViewController: UIViewController {
         
     }
     
-    @IBAction func unwindToTripsViewController(_ unwindSegue: UIStoryboardSegue) {
-        // leave here blank
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTripViewController" {
             let popup = segue.destination as! AddTripViewController
@@ -93,8 +89,10 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let trip = TripData.tripModels[indexPath.row]
         let storyBoard = UIStoryboard(name: String(describing: ActivitiesViewController.self), bundle: nil)
-        let vc = storyBoard.instantiateInitialViewController()!
+        let vc = storyBoard.instantiateInitialViewController() as! ActivitiesViewController
+        vc.tripId = trip.id
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -120,12 +118,8 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
             self.present(alert, animated: true)
             
         }
-        // this available thing is because I don't have trash icon in project so I use the sf symbols icon
-        if #available(iOS 13.0, *) {
-            delete.image = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
-        } else {
-            // Fallback on earlier versions
-        }
+        
+        delete.image = UIImage(named: "ic_delete")
         // change the UIContextualAction background color
 //        delete.backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
         return UISwipeActionsConfiguration(actions: [delete])
@@ -139,12 +133,7 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
             actionPerformed(true)
         }
         
-        
-        if #available(iOS 13.0, *) {
-            edit.image = UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
-        } else {
-            // Fallback on earlier versions
-        }
+        edit.image = UIImage(named: "ic_edit")
         edit.backgroundColor = Theme.editColor // UIColor(named: "Edit")
         return UISwipeActionsConfiguration(actions: [edit])
     }

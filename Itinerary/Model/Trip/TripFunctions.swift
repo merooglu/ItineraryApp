@@ -15,16 +15,26 @@ class TripFunctions {
     }
     
     static func readTrips(complition: @escaping () -> ()) {
+        // Replace with real data store code
         DispatchQueue.global(qos: .userInteractive).async {
             if TripData.tripModels.count == 0 {
-                TripData.tripModels.append(TripModel(title: "Trip to Bali"))
-                TripData.tripModels.append(TripModel(title: "Mexico"))
-                TripData.tripModels.append(TripModel(title: "Russian Trip"))
+                TripData.tripModels = MockData.createMockTripModelData()
             }
         }
         
         DispatchQueue.main.async {
             complition()
+        }
+    }
+    
+    static func readTrip(by id: UUID, completion: @escaping (TripModel?) -> ()) {
+        // Replace with real data store code
+        DispatchQueue.global(qos: .userInitiated).async {
+            let trip = TripData.tripModels.first(where: {$0.id == id})
+            
+            DispatchQueue.main.async {
+                completion(trip)
+            }
         }
     }
     
