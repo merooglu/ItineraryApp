@@ -13,6 +13,7 @@
 		911DA25423684AFE00F90494 /* TripsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 911DA25323684AFE00F90494 /* TripsViewController.storyboard */; };
 		911DA25623684B1B00F90494 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA25523684B1B00F90494 /* TripsViewController.swift */; };
 		911DA258236851F100F90494 /* TripsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DA257236851F100F90494 /* TripsTableViewCell.swift */; };
+		9132E85223AE46F50001CE12 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9132E85123AE46F50001CE12 /* HeaderTableViewCell.swift */; };
 		913D905323A9DA80009BA826 /* ActivityTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D905223A9DA80009BA826 /* ActivityTypeEnum.swift */; };
 		913D905523A9DAEA009BA826 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D905423A9DAEA009BA826 /* ActivityModel.swift */; };
 		913D905723A9DC5D009BA826 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D905623A9DC5D009BA826 /* DayModel.swift */; };
@@ -42,6 +43,7 @@
 		911DA25323684AFE00F90494 /* TripsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TripsViewController.storyboard; sourceTree = "<group>"; };
 		911DA25523684B1B00F90494 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		911DA257236851F100F90494 /* TripsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableViewCell.swift; sourceTree = "<group>"; };
+		9132E85123AE46F50001CE12 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		913D905223A9DA80009BA826 /* ActivityTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeEnum.swift; sourceTree = "<group>"; };
 		913D905423A9DAEA009BA826 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		913D905623A9DC5D009BA826 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				91E5682823A82B7700F548BE /* ActivitiesViewController.storyboard */,
 				91E5682A23A82BAE00F548BE /* ActivitiesViewController.swift */,
+				9132E85123AE46F50001CE12 /* HeaderTableViewCell.swift */,
 			);
 			path = ActivitiesViewController;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			files = (
 				91F10A9423A56462006FD594 /* AppUIButton.swift in Sources */,
 				911DA258236851F100F90494 /* TripsTableViewCell.swift in Sources */,
+				9132E85223AE46F50001CE12 /* HeaderTableViewCell.swift in Sources */,
 				91ECEDE1236A12C5000E6102 /* Theme.swift in Sources */,
 				913D905323A9DA80009BA826 /* ActivityTypeEnum.swift in Sources */,
 				91ECEDDE236A0BF4000E6102 /* UIViewExtensions.swift in Sources */,
