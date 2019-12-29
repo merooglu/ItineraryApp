@@ -47,6 +47,8 @@ class AddTripViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         tripTextField.rightViewMode = .never
+        // 4- using extension
+        //        guard tripTextField.hasValue, let newTripName = tripTextField.text else { return }
         
         guard tripTextField.text != "", let newTripName = tripTextField.text else {
             // Alternatives

@@ -52,7 +52,11 @@ class ActivitiesViewController: UIViewController {
     }
     
     func handleAddDay(action: UIAlertAction) {
-        print("Add new day")
+//        let storyBoard = UIStoryboard(name: String(describing: AddDayViewController.self), bundle: nil)
+//        let vc = storyBoard.instantiateInitialViewController()!
+//        vc.modalPresentationStyle = .overFullScreen
+        let vc = AddDayViewController.getInstance()
+        present(vc, animated: true)
     }
     
     func handleAddActivity(action: UIAlertAction) {

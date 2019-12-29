@@ -90,8 +90,7 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let trip = TripData.tripModels[indexPath.row]
-        let storyBoard = UIStoryboard(name: String(describing: ActivitiesViewController.self), bundle: nil)
-        let vc = storyBoard.instantiateInitialViewController() as! ActivitiesViewController
+        let vc = ActivitiesViewController.getInstance() as! ActivitiesViewController
         vc.tripId = trip.id
         vc.tripTitle = trip.title
         navigationController?.pushViewController(vc, animated: true)
