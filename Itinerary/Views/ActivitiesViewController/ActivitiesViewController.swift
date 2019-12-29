@@ -12,8 +12,10 @@ class ActivitiesViewController: UIViewController {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: FloatingActionButton!
     
     var tripId: UUID!
+    var tripTitle = ""
     var tripModel: TripModel?
     var sectionHeaderHeight: CGFloat = 0.0
 
@@ -21,6 +23,7 @@ class ActivitiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = tripTitle
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -29,13 +32,32 @@ class ActivitiesViewController: UIViewController {
             self.tripModel = model
             
             guard let model = model else { return }
-            self.title =  model.title
             self.backgroundImageView.image = model.image
             self.tableView.reloadData()
         }
-        sectionHeaderHeight = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell")?.contentView.bounds.height ?? 0
+        sectionHeaderHeight = tableView.dequeueReusableCell(withIdentifier: HeaderTableViewCell.identifier)?.contentView.bounds.height ?? 0
+    }
+
+    @IBAction func addButtonTapped(_ sender: FloatingActionButton) {
+        let alert = UIAlertController(title: "Which would you like to add?", message: nil, preferredStyle: .actionSheet)
+        let dayAction = UIAlertAction(title: "Day", style: .default, handler: handleAddDay)
+        let activityAction = UIAlertAction(title: "Activity", style: .default, handler: handleAddActivity(action:))
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(dayAction)
+        alert.addAction(activityAction)
+        alert.addAction(cancelAction)
+        alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = CGRect(x: 0, y: -7, width: sender.bounds.width, height: sender.bounds.height)
+        present(alert, animated: true)
     }
     
+    func handleAddDay(action: UIAlertAction) {
+        print("Add new day")
+    }
+    
+    func handleAddActivity(action: UIAlertAction) {
+        print("Add new activity")
+    }
 }
 
 extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -49,7 +71,7 @@ extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let dayModel = tripModel?.dayModels[section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HeaderTableViewCell.identifier) as! HeaderTableViewCell
         cell.setup(model: dayModel!)
         return cell.contentView
     }
@@ -68,7 +90,7 @@ extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var model = tripModel?.dayModels[indexPath.section].activityModels[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell") as! ActivityTableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: ActivityTableViewCell.identifier) as! ActivityTableViewCell
         cell.setup(model: model!)
         return cell
     }

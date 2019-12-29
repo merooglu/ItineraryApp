@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7I-4V-xon" customClass="PopupUIView" customModule="Itinerary" customModuleProvider="target">
-                                <rect key="frame" x="15" y="54" width="384" height="150"/>
+                                <rect key="frame" x="15" y="88" width="384" height="150"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcn-1z-vBD">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="150"/>
@@ -71,7 +71,7 @@
                         <constraints>
                             <constraint firstItem="eEm-ie-9xZ" firstAttribute="trailing" secondItem="j7I-4V-xon" secondAttribute="trailing" constant="15" id="E8N-Es-GVG"/>
                             <constraint firstItem="j7I-4V-xon" firstAttribute="leading" secondItem="eEm-ie-9xZ" secondAttribute="leading" constant="15" id="HnE-aW-bLS"/>
-                            <constraint firstItem="j7I-4V-xon" firstAttribute="top" secondItem="eEm-ie-9xZ" secondAttribute="top" constant="10" id="eii-Eo-jK6"/>
+                            <constraint firstItem="j7I-4V-xon" firstAttribute="top" secondItem="eEm-ie-9xZ" secondAttribute="top" constant="44" id="eii-Eo-jK6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eEm-ie-9xZ"/>
                     </view>

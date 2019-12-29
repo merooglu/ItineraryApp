@@ -30,7 +30,7 @@ class TripsViewController: UIViewController {
             if TripData.tripModels.count > 0 {
                 if UserDefaults.standard.bool(forKey: self.seenHelpView) == false {
                     self.view.addSubview(self.helpView)
-                    self.helpView.frame = self.view.frame
+                    self.helpView.frame = self.view.bounds 
                 }
             }
         })
@@ -79,7 +79,7 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableVeiw.dequeueReusableCell(withIdentifier: "cell") as! TripsTableViewCell
+        let cell = tableVeiw.dequeueReusableCell(withIdentifier: TripsTableViewCell.identifier) as! TripsTableViewCell
         cell.setup(tripModel: TripData.tripModels[indexPath.row])
         return cell
     }
@@ -93,6 +93,7 @@ extension TripsViewController: UITableViewDataSource, UITableViewDelegate {
         let storyBoard = UIStoryboard(name: String(describing: ActivitiesViewController.self), bundle: nil)
         let vc = storyBoard.instantiateInitialViewController() as! ActivitiesViewController
         vc.tripId = trip.id
+        vc.tripTitle = trip.title
         navigationController?.pushViewController(vc, animated: true)
     }
     
