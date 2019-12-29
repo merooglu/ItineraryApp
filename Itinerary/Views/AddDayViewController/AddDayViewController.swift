@@ -11,14 +11,14 @@ import UIKit
 class AddDayViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var subTitleTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    var tripIndexToEdit: Int?
+    var tripIndex: Int!
     
-    var doneSaving: (() -> ())?
+    var doneSaving: ((DayModel) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +32,19 @@ class AddDayViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        titleTextField.rightViewMode = .never
-        guard titleTextField.hasValue, let newTitle = titleTextField.text else {return}
+//        guard titleTextField.hasValue, let newTitle = titleTextField.text else {return}
         
-//        if let index = tripIndexToEdit {
-//            TripFunctions.updateTrip(at: index, title: newTripName, image: imageview.image)
-//        } else {
-//            TripFunctions.createTrip(tripModel: TripModel(title: newTripName, image: imageview.image))
-//        }
-        
+        let dayModel = DayModel(title: datePicker.date, subTitle: subTitleTextField.text ?? "", tripData: nil)
+        DayFunctions.createDays(at: tripIndex, using: dayModel)
+
         if let doneSaving = doneSaving {
-            doneSaving()
+            doneSaving(dayModel)
         }
         dismiss(animated: true)
     }
+    
+    @IBAction func subTitleTextFieldDoneAction(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
 }

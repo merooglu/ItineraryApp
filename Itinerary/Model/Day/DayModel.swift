@@ -10,11 +10,11 @@ import Foundation
 
 struct DayModel {
     var id: String!
-    var title = ""
+    var title = Date()
     var subTitle = ""
     var activityModels = [ActivityModel]()
     
-    init(title: String, subTitle: String, tripData: [ActivityModel]?) {
+    init(title: Date, subTitle: String, tripData: [ActivityModel]?) {
         id = UUID().uuidString
         self.title = title
         self.subTitle = subTitle

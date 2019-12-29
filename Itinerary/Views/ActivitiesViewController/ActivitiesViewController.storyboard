@@ -24,6 +24,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uCp-1E-K2s">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="RQL-Bw-BL4">
+                                    <rect key="frame" x="0.0" y="198.5" width="414" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderTableViewCell" id="o3n-gp-4GH" customClass="HeaderTableViewCell" customModule="Itinerary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="42.5"/>
@@ -128,7 +133,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oQ-RJ-yYw" customClass="FloatingActionButton" customModule="Itinerary" customModuleProvider="target">
-                                <rect key="frame" x="338" y="806" width="56" height="56"/>
+                                <rect key="frame" x="338" y="786" width="56" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="Fjn-f8-hPh"/>
                                     <constraint firstAttribute="width" constant="56" id="QOY-XN-qPZ"/>
@@ -150,7 +155,7 @@
                             <constraint firstItem="uCp-1E-K2s" firstAttribute="trailing" secondItem="utJ-1m-AJq" secondAttribute="trailing" id="QFh-wD-JzO"/>
                             <constraint firstAttribute="bottom" secondItem="uCp-1E-K2s" secondAttribute="bottom" id="SRn-mg-lQq"/>
                             <constraint firstAttribute="trailing" secondItem="erN-wb-Ofp" secondAttribute="trailing" id="YXh-np-3Uj"/>
-                            <constraint firstItem="utJ-1m-AJq" firstAttribute="bottom" secondItem="4oQ-RJ-yYw" secondAttribute="bottom" id="dYA-5i-xG3"/>
+                            <constraint firstItem="utJ-1m-AJq" firstAttribute="bottom" secondItem="4oQ-RJ-yYw" secondAttribute="bottom" constant="20" id="dYA-5i-xG3"/>
                             <constraint firstAttribute="bottom" secondItem="erN-wb-Ofp" secondAttribute="bottom" id="npU-tR-tEC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="utJ-1m-AJq"/>

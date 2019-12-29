@@ -61,7 +61,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-yp-0QK" customClass="FloatingActionButton" customModule="Itinerary" customModuleProvider="target">
-                                <rect key="frame" x="338" y="718" width="56" height="56"/>
+                                <rect key="frame" x="338" y="698" width="56" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="0Jh-VR-81x"/>
                                     <constraint firstAttribute="height" constant="56" id="q0J-tT-fII"/>
@@ -77,7 +77,7 @@
                         <constraints>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="top" secondItem="yPW-dj-1Xc" secondAttribute="top" id="4bx-Kw-3T3"/>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="leading" secondItem="yPW-dj-1Xc" secondAttribute="leading" id="NyH-Wx-g3F"/>
-                            <constraint firstItem="aYg-yp-0QK" firstAttribute="bottom" secondItem="yPW-dj-1Xc" secondAttribute="bottom" id="dPc-xi-0zm"/>
+                            <constraint firstItem="aYg-yp-0QK" firstAttribute="bottom" secondItem="yPW-dj-1Xc" secondAttribute="bottom" constant="-20" id="dPc-xi-0zm"/>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="trailing" secondItem="yPW-dj-1Xc" secondAttribute="trailing" id="viT-Mo-7IF"/>
                             <constraint firstItem="yPW-dj-1Xc" firstAttribute="trailing" secondItem="aYg-yp-0QK" secondAttribute="trailing" constant="20" id="yZY-06-UpN"/>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="bottom" secondItem="yPW-dj-1Xc" secondAttribute="bottom" id="zH9-CX-ACx"/>

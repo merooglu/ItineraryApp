@@ -47,7 +47,8 @@ class TripsViewController: UIViewController {
             // 1. You can use the callback like this
 //            popup.doneSaving = tripVCdoneSavingFunction()
             popup.doneSaving = {[weak self] in
-                self?.tableVeiw.reloadData()
+                guard let self = self else { return }
+                self.tableVeiw.reloadData()
             }
             tripIndexToEdit = nil
         }
