@@ -46,6 +46,14 @@ class ActivitiesViewController: UIViewController {
         let dayAction = UIAlertAction(title: "Day", style: .default, handler: handleAddDay)
         let activityAction = UIAlertAction(title: "Activity", style: .default, handler: handleAddActivity(action:))
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        // alternative
+//        if tripModel?.dayModels.count == 0 {
+//            activityAction.isEnabled = false
+//        }
+        
+        activityAction.isEnabled = tripModel!.dayModels.count > 0
+        
         alert.addAction(dayAction)
         alert.addAction(activityAction)
         alert.addAction(cancelAction)
@@ -60,6 +68,7 @@ class ActivitiesViewController: UIViewController {
 //        let vc = storyBoard.instantiateInitialViewController()!
 //        vc.modalPresentationStyle = .overFullScreen
         let vc = AddDayViewController.getInstance() as! AddDayViewController
+        vc.tripModel = tripModel
         // alternative
         // let index = TripData.tripModels.firstIndex { $0.id == tripId }
         vc.tripIndex = TripData.tripModels.firstIndex(where: { (tripModel) -> Bool in
@@ -78,7 +87,10 @@ class ActivitiesViewController: UIViewController {
     }
     
     func handleAddActivity(action: UIAlertAction) {
-        print("Add new activity")
+        let vc = AddActivityViewController.getInstance() as! AddActivityViewController
+        vc.tripModel = tripModel
+        
+        present(vc, animated: true)
     }
 }
 
