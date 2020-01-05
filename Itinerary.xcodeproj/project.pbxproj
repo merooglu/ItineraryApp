@@ -23,6 +23,7 @@
 		916195B92365F0D1006D707A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916195B72365F0D1006D707A /* LaunchScreen.storyboard */; };
 		9167F5BC23C1FAA2004DF7B2 /* AddActivityViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9167F5BB23C1FAA2004DF7B2 /* AddActivityViewController.storyboard */; };
 		9167F5BE23C1FCBA004DF7B2 /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9167F5BD23C1FCBA004DF7B2 /* AddActivityViewController.swift */; };
+		9167F5C023C2597A004DF7B2 /* ActivityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9167F5BF23C2597A004DF7B2 /* ActivityFunctions.swift */; };
 		916DD1EE23B8E2400045C2B0 /* AddDayViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916DD1ED23B8E2400045C2B0 /* AddDayViewController.storyboard */; };
 		916DD1F023B8E2590045C2B0 /* AddDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916DD1EF23B8E2590045C2B0 /* AddDayViewController.swift */; };
 		916DD1F223B8FF3C0045C2B0 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916DD1F123B8FF3C0045C2B0 /* UIViewControllerExtension.swift */; };
@@ -65,6 +66,7 @@
 		916195BA2365F0D1006D707A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9167F5BB23C1FAA2004DF7B2 /* AddActivityViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddActivityViewController.storyboard; sourceTree = "<group>"; };
 		9167F5BD23C1FCBA004DF7B2 /* AddActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
+		9167F5BF23C2597A004DF7B2 /* ActivityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFunctions.swift; sourceTree = "<group>"; };
 		916DD1ED23B8E2400045C2B0 /* AddDayViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddDayViewController.storyboard; sourceTree = "<group>"; };
 		916DD1EF23B8E2590045C2B0 /* AddDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDayViewController.swift; sourceTree = "<group>"; };
 		916DD1F123B8FF3C0045C2B0 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				913D905423A9DAEA009BA826 /* ActivityModel.swift */,
 				913D905223A9DA80009BA826 /* ActivityTypeEnum.swift */,
+				9167F5BF23C2597A004DF7B2 /* ActivityFunctions.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				916DD1F423B902950045C2B0 /* UITextFieldExtension.swift in Sources */,
 				916DD1F023B8E2590045C2B0 /* AddDayViewController.swift in Sources */,
 				911DA258236851F100F90494 /* TripsTableViewCell.swift in Sources */,
+				9167F5C023C2597A004DF7B2 /* ActivityFunctions.swift in Sources */,
 				9149BB9723B16853002B926A /* ActivityTableViewCell.swift in Sources */,
 				916DD1F823B925750045C2B0 /* DateExtension.swift in Sources */,
 				9132E85223AE46F50001CE12 /* HeaderTableViewCell.swift in Sources */,

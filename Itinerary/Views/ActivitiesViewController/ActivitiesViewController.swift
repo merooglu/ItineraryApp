@@ -86,10 +86,27 @@ class ActivitiesViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    fileprivate func getTripIndex() -> Int? {
+        return TripData.tripModels.firstIndex(where: { (tripModel) -> Bool in
+            tripModel.id == tripId
+        })
+    }
+    
     func handleAddActivity(action: UIAlertAction) {
         let vc = AddActivityViewController.getInstance() as! AddActivityViewController
         vc.tripModel = tripModel
-        
+        // alternative
+        //        vc.tripIndex = TripData.tripModels.firstIndex(where: { (tripModel) -> Bool in
+        //            tripModel.id == tripId
+        //        })
+        vc.tripIndex = getTripIndex()
+        vc.doneSaving = {[weak self] dayIndex, activityModel in
+            guard let self = self else { return }
+            self.tripModel?.dayModels[dayIndex].activityModels.append(activityModel)
+            let row = (self.tripModel?.dayModels[dayIndex].activityModels.count)! - 1
+            let indexPath = IndexPath(row: row, section: dayIndex)
+            self.tableView.insertRows(at: [indexPath], with: .automatic)
+        }
         present(vc, animated: true)
     }
 }

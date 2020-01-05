@@ -16,6 +16,7 @@ class AddActivityViewController: UIViewController {
     @IBOutlet weak var subtitleTextField: UITextField!
     @IBOutlet var activityTypeButtons: [UIButton]!
     
+    var doneSaving: ((Int, ActivityModel) -> ())?
     var tripIndex: Int! // Needs for saving
     var tripModel: TripModel! // Needs for showing days in pickerivew
     
@@ -39,8 +40,23 @@ class AddActivityViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard titleTextField.text != "", let newTitle = titleTextField.text else {
+            titleTextField.layer.borderColor = UIColor.red.cgColor
+            titleTextField.layer.borderWidth = 1
+            titleTextField.layer.cornerRadius = 5
+            titleTextField.placeholder = "Activity name required"
+            return
+        }
+        
         let activityType: ActivityType = getSelectedActivityType()
         
+        let dayIndex = dayPickerView.selectedRow(inComponent: 0)
+        let activityModel = ActivityModel(title: newTitle, subTitle: subtitleTextField.text ?? "", activityType: activityType)
+        ActivityFunctions.createActivity(at: tripIndex, for: dayIndex, using: activityModel)
+        
+        if let doneSaving = doneSaving {
+            doneSaving(dayIndex, activityModel)
+        }
         dismiss(animated: true)
     }
     
