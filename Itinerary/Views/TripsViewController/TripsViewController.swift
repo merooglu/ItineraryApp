@@ -10,6 +10,7 @@ import UIKit
 
 class TripsViewController: UIViewController {
     
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var tableVeiw: UITableView!
     @IBOutlet weak var addButton: FloatingActionButton!
     @IBOutlet var helpView: UIVisualEffectView!
@@ -38,6 +39,15 @@ class TripsViewController: UIViewController {
         view.backgroundColor = Theme.backgroundColor
         //        addButton.createFloatingActionButton()
         
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseIn], animations: {
+            // 200° x π/180
+            let radians = CGFloat(200 * Double.pi/180)
+            self.logoImageView.alpha = 0
+            self.logoImageView.transform = CGAffineTransform(rotationAngle: radians).scaledBy(x: 3, y: 3)
+            
+            let yRotation = CATransform3DMakeRotation(radians, 0, radians, 0)
+            self.logoImageView.layer.transform = CATransform3DConcat(self.logoImageView.layer.transform, yRotation)
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

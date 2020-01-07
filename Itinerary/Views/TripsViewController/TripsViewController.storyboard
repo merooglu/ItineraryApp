@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ugW-bm-2YK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ugW-bm-2YK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,6 +61,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ib9-xu-nGk">
+                                <rect key="frame" x="87" y="284" width="240" height="240"/>
+                                <color key="tintColor" name="Tint"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Yhw-vf-esn"/>
+                                    <constraint firstAttribute="height" constant="240" id="rEe-3E-3YJ"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-yp-0QK" customClass="FloatingActionButton" customModule="Itinerary" customModuleProvider="target">
                                 <rect key="frame" x="338" y="698" width="56" height="56"/>
                                 <constraints>
@@ -76,8 +85,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="top" secondItem="yPW-dj-1Xc" secondAttribute="top" id="4bx-Kw-3T3"/>
+                            <constraint firstItem="Ib9-xu-nGk" firstAttribute="centerX" secondItem="YjE-0b-6aG" secondAttribute="centerX" id="4f0-aB-wPl"/>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="leading" secondItem="yPW-dj-1Xc" secondAttribute="leading" id="NyH-Wx-g3F"/>
                             <constraint firstItem="aYg-yp-0QK" firstAttribute="bottom" secondItem="yPW-dj-1Xc" secondAttribute="bottom" constant="-20" id="dPc-xi-0zm"/>
+                            <constraint firstItem="Ib9-xu-nGk" firstAttribute="centerY" secondItem="YjE-0b-6aG" secondAttribute="centerY" id="mO2-ad-XMS"/>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="trailing" secondItem="yPW-dj-1Xc" secondAttribute="trailing" id="viT-Mo-7IF"/>
                             <constraint firstItem="yPW-dj-1Xc" firstAttribute="trailing" secondItem="aYg-yp-0QK" secondAttribute="trailing" constant="20" id="yZY-06-UpN"/>
                             <constraint firstItem="oAH-I7-gS1" firstAttribute="bottom" secondItem="yPW-dj-1Xc" secondAttribute="bottom" id="zH9-CX-ACx"/>
@@ -88,6 +99,7 @@
                     <connections>
                         <outlet property="addButton" destination="aYg-yp-0QK" id="H5H-Kk-xNU"/>
                         <outlet property="helpView" destination="Huy-XM-Hqq" id="ZkZ-3U-5cp"/>
+                        <outlet property="logoImageView" destination="Ib9-xu-nGk" id="hMU-cz-VTC"/>
                         <outlet property="tableVeiw" destination="oAH-I7-gS1" id="Hzd-eB-4eh"/>
                     </connections>
                 </viewController>
@@ -178,8 +190,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_launchScreen" width="352" height="352"/>
         <image name="ic_plus" width="50" height="50"/>
         <image name="img_deleteSwipe" width="590" height="258"/>
         <image name="img_editSwipe" width="594" height="262"/>
+        <namedColor name="Tint">
+            <color red="1" green="0.24300000071525574" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
+    <color key="tintColor" name="Tint"/>
 </document>

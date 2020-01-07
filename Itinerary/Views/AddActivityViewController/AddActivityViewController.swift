@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddActivityViewController: UIViewController {
+class AddActivityViewController: UITableViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dayPickerView: UIPickerView!
@@ -72,6 +72,10 @@ class AddActivityViewController: UIViewController {
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func keyboarddDoneButtonAction(_ sender: UITextField) {
+        sender.resignFirstResponder()
     }
 }
 
