@@ -24,18 +24,6 @@ class TripsViewController: UIViewController {
         tableVeiw.delegate = self
         tableVeiw.dataSource = self
         
-        TripFunctions.readTrips(complition: { [unowned self] in
-            // Completion, this called from TripFunctions.readTrips function
-            self.tableVeiw.reloadData()
-            
-            if TripData.tripModels.count > 0 {
-                if UserDefaults.standard.bool(forKey: self.seenHelpView) == false {
-                    self.view.addSubview(self.helpView)
-                    self.helpView.frame = self.view.bounds 
-                }
-            }
-        })
-     
         view.backgroundColor = Theme.backgroundColor
         //        addButton.createFloatingActionButton()
         
@@ -47,8 +35,25 @@ class TripsViewController: UIViewController {
             
             let yRotation = CATransform3DMakeRotation(radians, 0, radians, 0)
             self.logoImageView.layer.transform = CATransform3DConcat(self.logoImageView.layer.transform, yRotation)
-        })
+        }) { (success) in
+            self.getTripData()
+        }
+    
     }
+    
+    fileprivate func getTripData() {
+          TripFunctions.readTrips(complition: { [unowned self] in
+              // Completion, this called from TripFunctions.readTrips function
+              self.tableVeiw.reloadData()
+              
+              if TripData.tripModels.count > 0 {
+                  if UserDefaults.standard.bool(forKey: self.seenHelpView) == false {
+                      self.view.addSubview(self.helpView)
+                      self.helpView.frame = self.view.bounds
+                  }
+              }
+          })
+      }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTripViewController" {
