@@ -120,8 +120,8 @@ class AddTripViewController: UIViewController {
                 alert.addAction(gotoSettingsAction)
                 alert.addAction(cancelAction)
                 self.present(alert, animated: true)
-            default:
-                break
+            @unknown default:
+                print("It looks like Apple add new enum values to PHAuthorizationStatus")
             }
         }
     }

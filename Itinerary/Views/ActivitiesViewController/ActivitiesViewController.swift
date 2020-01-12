@@ -86,7 +86,7 @@ class ActivitiesViewController: UIViewController {
         present(vc, animated: true)
     }
     
-    fileprivate func getTripIndex() -> Int? {
+    fileprivate func getTripIndex() -> Int! {
         return TripData.tripModels.firstIndex(where: { (tripModel) -> Bool in
             tripModel.id == tripId
         })
@@ -110,7 +110,7 @@ class ActivitiesViewController: UIViewController {
         present(vc, animated: true)
     }
 }
-
+// MARK: - UITableViewDelegate - UITableViewDataSource
 extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return tripModel?.dayModels.count ?? 0
@@ -127,13 +127,13 @@ extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell.contentView
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let title = tripModel?.dayModels[section].title ?? ""
-//        let subTitle = tripModel?.dayModels[section].subTitle ?? ""
-//        return "\(title) - \(subTitle)"
-//    }
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //        let title = tripModel?.dayModels[section].title ?? ""
+    //        let subTitle = tripModel?.dayModels[section].subTitle ?? ""
+    //        return "\(title) - \(subTitle)"
+    //    }
     
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tripModel?.dayModels[section].activityModels.count ?? 0
@@ -145,4 +145,89 @@ extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setup(model: model!)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let activityModel = tripModel!.dayModels[indexPath.section].activityModels[indexPath.row]
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, actionPerformed: @escaping (Bool) -> Void ) in
+            
+            let alert = UIAlertController(title: "Delete Activity", message: "Are you sure want to delete this activity: \(activityModel.title)", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
+                actionPerformed(false)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alertAction) in
+                // perform delete
+                ActivityFunctions.deleteActivity(at: self.getTripIndex(), for: indexPath.section, using: activityModel)
+                self.tripModel!.dayModels[indexPath.section].activityModels.remove(at: indexPath.row)
+                // table view den silmeden önce back-endten veriyi silmek gerekir (1 üst satır)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                actionPerformed(true)
+            }))
+            
+            self.present(alert, animated: true)
+            
+        }
+        
+        delete.image = UIImage(named: "ic_delete")
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
+            let vc = AddActivityViewController.getInstance() as! AddActivityViewController
+            vc.tripModel = self.tripModel
+            
+            // Which Trip are we working with?
+            vc.tripIndex = self.getTripIndex()
+            
+            // Which Day are we on?
+            vc.dayIndexToEdit = indexPath.section
+            
+            // Which activity are we editing?
+            vc.activityModelToEdit = self.tripModel?.dayModels[indexPath.section].activityModels[indexPath.row]
+            
+            // What do we want to happen after the activity saved
+            vc.doneUpdating = { [weak self] oldDayIndex, newDayIndex, activityModel in
+                guard let self = self else { return }
+                
+                let oldActivityIndex = (self.tripModel?.dayModels[oldDayIndex].activityModels.firstIndex(of: activityModel))!
+                
+                if oldDayIndex == newDayIndex {
+                    // 1. Update local table data
+                    self.tripModel?.dayModels[newDayIndex].activityModels[oldActivityIndex] = activityModel
+                    // 2. Refresh just that row
+                    let indexPath = IndexPath(row: oldActivityIndex, section: newDayIndex)
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                } else {
+                    // Activity moved to a different day
+                    
+                    // 1. Remove activity from local table data
+                    self.tripModel?.dayModels[oldDayIndex].activityModels.remove(at: oldActivityIndex)
+                    // 2. Insert Activity into new location
+                    let lastIndex = (self.tripModel?.dayModels[newDayIndex].activityModels.count)!
+                    self.tripModel?.dayModels[newDayIndex].activityModels.insert(activityModel, at: lastIndex)
+                    // 3. Update table rows
+                    tableView.performBatchUpdates({
+                        tableView.deleteRows(at: [indexPath], with: .automatic)
+                        let insertIndexPath = IndexPath(row: lastIndex, section: newDayIndex)
+                        tableView.insertRows(at: [insertIndexPath], with: .automatic)
+                    })
+                }
+            }
+            
+            self.present(vc, animated: true)
+            actionPerformed(true)
+        }
+        
+        edit.image = UIImage(named: "ic_edit")
+        edit.backgroundColor = UIColor(named: "Edit")
+        
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
 }

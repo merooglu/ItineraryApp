@@ -26,10 +26,12 @@ class TripsViewController: UIViewController {
         
         view.backgroundColor = Theme.backgroundColor
         //        addButton.createFloatingActionButton()
+    
+        // 200° x π/180
+        let radians = CGFloat(200 * Double.pi/180)
         
         UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseIn], animations: {
-            // 200° x π/180
-            let radians = CGFloat(200 * Double.pi/180)
+           
             self.logoImageView.alpha = 0
             self.logoImageView.transform = CGAffineTransform(rotationAngle: radians).scaledBy(x: 3, y: 3)
             

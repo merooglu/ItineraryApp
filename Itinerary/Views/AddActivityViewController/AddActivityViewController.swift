@@ -20,6 +20,11 @@ class AddActivityViewController: UITableViewController {
     var tripIndex: Int! // Needs for saving
     var tripModel: TripModel! // Needs for showing days in pickerivew
     
+    // For editing activities
+    var dayIndexToEdit: Int?
+    var activityModelToEdit: ActivityModel!
+    var doneUpdating: ((Int, Int, ActivityModel) -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +32,23 @@ class AddActivityViewController: UITableViewController {
         
         dayPickerView.delegate = self
         dayPickerView.dataSource = self
+        
+        if let dayIndex = dayIndexToEdit, let activityModel = activityModelToEdit {
+            // Update Activity: populate the popup
+            titleLabel.text = "Edit Activity"
+            
+            // Select the Day in the Picker View
+            dayPickerView.selectRow(dayIndex, inComponent: 0, animated: true)
+            
+            // Populate the Activity Data
+            activityTypeSelected(activityTypeButtons[activityModel.activityType.rawValue])
+            titleTextField.text = activityModel.title
+            subtitleTextField.text = activityModel.subTitle
+        } else {
+            // New Activity: set default values
+            activityTypeSelected(activityTypeButtons[ActivityType.excursion.rawValue])
+            
+        }
     }
     
     @IBAction func activityTypeSelected(_ sender: UIButton) {
@@ -50,13 +72,29 @@ class AddActivityViewController: UITableViewController {
         
         let activityType: ActivityType = getSelectedActivityType()
         
-        let dayIndex = dayPickerView.selectedRow(inComponent: 0)
-        let activityModel = ActivityModel(title: newTitle, subTitle: subtitleTextField.text ?? "", activityType: activityType)
-        ActivityFunctions.createActivity(at: tripIndex, for: dayIndex, using: activityModel)
+        let newDayIndex = dayPickerView.selectedRow(inComponent: 0)
         
-        if let doneSaving = doneSaving {
-            doneSaving(dayIndex, activityModel)
+        if activityModelToEdit != nil {
+            // Update Activity
+            activityModelToEdit.activityType = activityType
+            activityModelToEdit.title = newTitle
+            activityModelToEdit.subTitle = subtitleTextField.text ?? ""
+            
+            ActivityFunctions.updateActivity(at: tripIndex, oldDayIndex: dayIndexToEdit!, newDayIndex: newDayIndex, using: activityModelToEdit)
+            
+            if let doneUpdating = doneUpdating, let oldDayIndex = dayIndexToEdit {
+                doneUpdating(oldDayIndex, newDayIndex, activityModelToEdit)
+            }
+        } else {
+            // New Activity
+            let activityModel = ActivityModel(title: newTitle, subTitle: subtitleTextField.text ?? "", activityType: activityType)
+            ActivityFunctions.createActivity(at: tripIndex, for: newDayIndex, using: activityModel)
+            
+            if let doneSaving = doneSaving {
+                doneSaving(newDayIndex, activityModel)
+            }
         }
+        
         dismiss(animated: true)
     }
     
