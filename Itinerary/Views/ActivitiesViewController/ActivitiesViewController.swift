@@ -109,6 +109,15 @@ class ActivitiesViewController: UIViewController {
         }
         present(vc, animated: true)
     }
+    
+    @IBAction func toggleEditModeButtonTapped(_ sender: UIBarButtonItem) {
+        // toggle edit mode
+//        tableView.isEditing = !tableView.isEditing
+        // alternative
+        tableView.isEditing.toggle()
+        sender.title = sender.title == "Edit" ? "Done" : "Edit"
+    }
+    
 }
 // MARK: - UITableViewDelegate - UITableViewDataSource
 extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -228,6 +237,31 @@ extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
         edit.backgroundColor = UIColor(named: "Edit")
         
         return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // choose which section you want to reorder
+//        if indexPath.section > 0 {
+//            return true
+//        }
+//        return false
+        
+        // reorder all cell
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // 1. Get the current activity
+        let activityModel = (tripModel?.dayModels[sourceIndexPath.section].activityModels[sourceIndexPath.row])!
+        
+        // 2. Delete activity from old location
+        tripModel?.dayModels[sourceIndexPath.section].activityModels.remove(at: sourceIndexPath.row)
+        
+        // 3. Insert activity into the new location
+        tripModel?.dayModels[destinationIndexPath.section].activityModels.insert(activityModel, at: destinationIndexPath.row)
+        
+        // 4. Update the data store
+        ActivityFunctions.reorderActivity(at: getTripIndex(), oldDayIndex: sourceIndexPath.section, newDayIndex: destinationIndexPath.section, newActivityIndex: destinationIndexPath.row, activityModel: activityModel)
     }
     
 }
