@@ -20,10 +20,9 @@ class TripFunctions {
             if TripData.tripModels.count == 0 {
                 TripData.tripModels = MockData.createMockTripModelData()
             }
-        }
-        
-        DispatchQueue.main.async {
-            complition()
+            DispatchQueue.main.async {
+                complition()
+            }
         }
     }
     
