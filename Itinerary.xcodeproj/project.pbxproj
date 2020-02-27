@@ -136,8 +136,8 @@
 		911DA25123684AB900F90494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				91F10A8D23A558FF006FD594 /* AddTripViewController */,
 				911DA25223684AD600F90494 /* TripsViewController */,
+				91F10A8D23A558FF006FD594 /* AddTripViewController */,
 				91E5682723A82B2000F548BE /* ActivitiesViewController */,
 				916DD1EC23B8E2160045C2B0 /* AddDayViewController */,
 				9167F5BA23C1FA67004DF7B2 /* AddActivityViewController */,

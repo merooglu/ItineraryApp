@@ -57,6 +57,7 @@ class TripsViewController: UIViewController {
           })
       }
     
+    // MARK: - Prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTripViewController" {
             let popup = segue.destination as! AddTripViewController

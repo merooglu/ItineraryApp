@@ -51,12 +51,13 @@ class ActivitiesViewController: UIViewController {
 //        if tripModel?.dayModels.count == 0 {
 //            activityAction.isEnabled = false
 //        }
-        
         activityAction.isEnabled = tripModel!.dayModels.count > 0
         
         alert.addAction(dayAction)
         alert.addAction(activityAction)
         alert.addAction(cancelAction)
+        // action sheet buttons text color
+//        alert.view.tintColor = Theme.tintColor
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = CGRect(x: 0, y: -7, width: sender.bounds.width, height: sender.bounds.height)
         present(alert, animated: true)
@@ -149,8 +150,8 @@ extension ActivitiesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var model = tripModel?.dayModels[indexPath.section].activityModels[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: ActivityTableViewCell.identifier) as! ActivityTableViewCell
+        let model = tripModel?.dayModels[indexPath.section].activityModels[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: ActivityTableViewCell.identifier) as! ActivityTableViewCell
         cell.setup(model: model!)
         return cell
     }

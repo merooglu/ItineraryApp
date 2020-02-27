@@ -56,7 +56,6 @@ class AddActivityViewController: UITableViewController {
 //        activityTypeButtons.forEach { (button) in
 //            button.tintColor = Theme.accentColor
 //        }
-        
         activityTypeButtons.forEach({ $0.tintColor = Theme.accentColor})
         sender.tintColor = Theme.tintColor
     }

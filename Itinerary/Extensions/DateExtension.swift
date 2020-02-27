@@ -13,6 +13,12 @@ extension Date {
         return Calendar.current.date(byAdding: .day, value: days, to: Date())!
     }
     
+    // Alternative
+//    var mediumDateStyle: String {
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        return formatter.string(from: self)
+//    }
     func mediumDate() -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

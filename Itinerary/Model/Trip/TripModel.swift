@@ -21,6 +21,7 @@ struct TripModel {
             // alternative
 //            dayModels = dayModels.sorted(by: { $0.title < $1.title })
             
+            // to use this function use shold use comparable protocol inside DayModel model
             dayModels = dayModels.sorted(by: < )
         }
     }
